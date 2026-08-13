@@ -1,3 +1,139 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PHOTO</title><link rel="stylesheet" href="style.css"></head><body>
-<main class="inner"><header class="inner-header"><a href="index.html">NAKAO TAKUMI</a>
-<nav class="inner-nav"><a href="works.html">WORKS</a><a href="texts.html">TEXTS</a><a href="photo.html">PHOTO</a><a href="about.html">ABOUT</a></nav></header><h1 class="page-title">PHOTO</h1><section class="photo-grid"><img src="01.jpg" alt=""><img src="02.jpg" alt=""><img src="03.jpg" alt=""><img src="04.jpg" alt=""><img src="05.jpg" alt=""><img src="06.jpg" alt=""><img src="07.jpg" alt=""><img src="08.jpg" alt=""><img src="09.jpg" alt=""><img src="10.jpg" alt=""></section></main><img class="dog-cursor" src="dog-cursor.png" alt=""><script src="cursor.js"></script></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PHOTO — NAKAO TAKUMI</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .photo-item {
+      margin: 0;
+    }
+    .photo-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .photo-item figcaption {
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      gap: 12px;
+      padding-top: 8px;
+      font-size: 10px;
+      letter-spacing: .03em;
+      color: #555;
+    }
+    @media (max-width:760px) {
+      .photo-item figcaption {
+        grid-template-columns: 28px 1fr;
+      }
+      .photo-item figcaption span:last-child {
+        grid-column: 2;
+        color: #888;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="inner">
+    <header class="inner-header">
+      <a href="index.html">NAKAO TAKUMI</a>
+      <nav class="inner-nav">
+        <a href="works.html">WORKS</a>
+        <a href="texts.html">TEXTS</a>
+        <a href="photo.html">PHOTO</a>
+        <a href="about.html">ABOUT</a>
+      </nav>
+    </header>
+
+    <h1 class="page-title">PHOTO</h1>
+
+    <section class="photo-grid">
+      
+    <figure class="photo-item">
+      <img src="01.jpg" alt="自宅">
+      <figcaption>
+        <span>01</span>
+        <span>自宅</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="02.jpg" alt="中山手">
+      <figcaption>
+        <span>02</span>
+        <span>中山手</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="03.jpg" alt="中山手">
+      <figcaption>
+        <span>03</span>
+        <span>中山手</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="04.jpg" alt="自宅">
+      <figcaption>
+        <span>04</span>
+        <span>自宅</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="05.jpg" alt="中山手">
+      <figcaption>
+        <span>05</span>
+        <span>中山手</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="06.jpg" alt="中山手">
+      <figcaption>
+        <span>06</span>
+        <span>中山手</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="07.jpg" alt="中山手">
+      <figcaption>
+        <span>07</span>
+        <span>中山手</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="08.jpg" alt="元町商店街">
+      <figcaption>
+        <span>08</span>
+        <span>元町商店街</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="09.jpg" alt="草津駅">
+      <figcaption>
+        <span>09</span>
+        <span>草津駅</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    <figure class="photo-item">
+      <img src="10.jpg" alt="実家">
+      <figcaption>
+        <span>10</span>
+        <span>実家</span>
+        <span>Rolleiflex</span>
+      </figcaption>
+    </figure>
+    </section>
+  </main>
+
+  <img class="dog-cursor" src="dog-cursor.png" alt="">
+  <script src="cursor.js"></script>
+</body>
+</html>
