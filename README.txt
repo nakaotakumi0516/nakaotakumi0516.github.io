@@ -1,9 +1,17 @@
-v12
-- 犬カーソルの見た目・大きさはv11のまま。
-- 通常の矢印カーソルを表示。
-- 犬は少し遅れて追従。
-- 左→右に動かすと犬は右向き。
-- 右→左に動かすと犬は左向き。
-- 停止時は最後の向きを維持。
-- 右向きで停止：犬はカーソルの左側（カーソルが犬の右側）。
-- 左向きで停止：犬はカーソルの右側（カーソルが犬の左側）。
+GitHub Pages flat upload version v13
+
+GitHub repository rootに、このフォルダの中身をすべて直接アップロードしてください。
+フォルダ構造は使っていません。
+
+index.html
+works.html
+texts.html
+photo.html
+about.html
+style.css
+cursor.js
+dog-cursor.png
+grass-only.png
+01.jpg ... 10.jpg
+
+既存ファイルがある場合は同名ファイルを置き換えてください。
