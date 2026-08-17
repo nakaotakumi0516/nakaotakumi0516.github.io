@@ -154,7 +154,6 @@ a{text-decoration:none;color:inherit}
     transition:opacity .55s ease;
   }
   .dog-cursor.touch-active{
-    display:block!important;
     opacity:1!important;
   }
   .trail{
