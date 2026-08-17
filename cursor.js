@@ -1,84 +1,101 @@
-
 (()=>{
-  if(matchMedia("(pointer:coarse)").matches) return;
-
-  const dog = document.querySelector(".dog-cursor");
+  const dog = document.querySelector('.dog-cursor');
   if(!dog) return;
 
+  const isTouch = matchMedia('(pointer: coarse)').matches || ('ontouchstart' in window);
   let mx = innerWidth * 0.5;
   let my = innerHeight * 0.5;
-  let prevMx = mx;
-
-  const offsetX = 42;
-  const offsetY = 14;
-
-  // false = dog faces left (original image)
-  // true  = dog faces right (flipped)
+  let prevX = mx;
+  const offsetX = isTouch ? 48 : 42;
+  const offsetY = isTouch ? 18 : 14;
   let facingRight = false;
-
-  function targetX(){
-    // When dog faces right, keep dog LEFT of cursor,
-    // so the cursor appears on the dog's right side.
-    return facingRight ? mx - offsetX : mx + offsetX;
-  }
-
-  function targetY(){
-    return my + offsetY;
-  }
-
-  let tx = targetX();
-  let ty = targetY();
-  let x = tx + 70;
-  let y = ty + 35;
-
+  let x = mx + offsetX;
+  let y = my + offsetY;
+  let tx = x;
+  let ty = y;
+  let fadeTimer = null;
   let lastTrail = 0;
 
-  addEventListener("mousemove", e => {
-    const dx = e.clientX - prevMx;
+  function setFacing(dx){
+    if(Math.abs(dx) <= 1.5) return;
+    facingRight = dx > 0;
+    dog.style.transform = facingRight
+      ? 'translate(-50%,-50%) scaleX(-1)'
+      : 'translate(-50%,-50%) scaleX(1)';
+  }
 
-    // Only flip when horizontal movement is meaningful.
-    if (Math.abs(dx) > 1.5) {
-      facingRight = dx > 0;
+  function updateTarget(px, py){
+    mx = px;
+    my = py;
+    tx = facingRight ? mx - offsetX : mx + offsetX;
+    ty = my + offsetY;
+  }
 
-      dog.style.transform = facingRight
-        ? "translate(-50%,-50%) scaleX(-1)"
-        : "translate(-50%,-50%) scaleX(1)";
-    }
-
-    prevMx = e.clientX;
-    mx = e.clientX;
-    my = e.clientY;
-
-    // Rest position changes according to the dog's facing direction.
-    tx = targetX();
-    ty = targetY();
-
+  function makeTrail(px, py){
     const now = performance.now();
-    if(now - lastTrail > 95){
-      lastTrail = now;
-      const t = document.createElement("i");
-      t.className = "trail";
-      t.style.left = x + "px";
-      t.style.top = y + "px";
-      document.body.appendChild(t);
+    if(now - lastTrail < 95) return;
+    lastTrail = now;
+    const t = document.createElement('i');
+    t.className = 'trail';
+    t.style.left = px + 'px';
+    t.style.top = py + 'px';
+    document.body.appendChild(t);
+    requestAnimationFrame(()=>{
+      t.style.transition = 'opacity .38s ease';
+      setTimeout(()=>t.style.opacity='0', 60);
+    });
+    setTimeout(()=>t.remove(), 480);
+  }
 
-      requestAnimationFrame(() => {
-        t.style.transition = "opacity .38s ease";
-        setTimeout(() => t.style.opacity = "0", 60);
-      });
-      setTimeout(() => t.remove(), 480);
-    }
-  });
+  if(!isTouch){
+    addEventListener('mousemove', e=>{
+      const dx = e.clientX - prevX;
+      setFacing(dx);
+      prevX = e.clientX;
+      updateTarget(e.clientX, e.clientY);
+      makeTrail(x, y);
+    });
+  } else {
+    dog.classList.remove('touch-active');
+
+    addEventListener('touchstart', e=>{
+      if(!e.touches || !e.touches.length) return;
+      const t = e.touches[0];
+      prevX = t.clientX;
+      updateTarget(t.clientX, t.clientY);
+      clearTimeout(fadeTimer);
+      dog.classList.add('touch-active');
+    }, {passive:true});
+
+    addEventListener('touchmove', e=>{
+      if(!e.touches || !e.touches.length) return;
+      const t = e.touches[0];
+      const dx = t.clientX - prevX;
+      setFacing(dx);
+      prevX = t.clientX;
+      updateTarget(t.clientX, t.clientY);
+      clearTimeout(fadeTimer);
+      dog.classList.add('touch-active');
+      makeTrail(x, y);
+    }, {passive:true});
+
+    addEventListener('touchend', ()=>{
+      clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(()=>dog.classList.remove('touch-active'), 750);
+    }, {passive:true});
+
+    addEventListener('touchcancel', ()=>{
+      clearTimeout(fadeTimer);
+      dog.classList.remove('touch-active');
+    }, {passive:true});
+  }
 
   function frame(){
     x += (tx - x) * 0.10;
     y += (ty - y) * 0.10;
-
-    dog.style.left = x + "px";
-    dog.style.top = y + "px";
-
+    dog.style.left = x + 'px';
+    dog.style.top = y + 'px';
     requestAnimationFrame(frame);
   }
-
   frame();
 })();

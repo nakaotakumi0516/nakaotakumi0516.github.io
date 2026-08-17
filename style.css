@@ -148,6 +148,19 @@ a{text-decoration:none;color:inherit}
 }
 @media(pointer:coarse){
   html,body,a,button{cursor:auto!important}
+  .dog-cursor{
+    display:block!important;
+    opacity:0;
+    transition:opacity .55s ease;
+  }
+  .dog-cursor.touch-active{
+    opacity:1;
+  }
+  .trail{
+    display:block!important;
+    opacity:.75;
+  }
+}
   .dog-cursor,.trail{display:none!important}
 }
 
