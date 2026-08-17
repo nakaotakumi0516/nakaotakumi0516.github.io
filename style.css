@@ -154,14 +154,13 @@ a{text-decoration:none;color:inherit}
     transition:opacity .55s ease;
   }
   .dog-cursor.touch-active{
-    opacity:1;
+    display:block!important;
+    opacity:1!important;
   }
   .trail{
     display:block!important;
     opacity:.75;
   }
-}
-  .dog-cursor,.trail{display:none!important}
 }
 
 .cover-link:hover,
