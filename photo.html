@@ -6,7 +6,21 @@
   <title>PHOTO — NAKAO TAKUMI</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .photo-item {
+    .photo-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-flow: row;
+      columns: auto;
+      gap: 48px;
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .photo-grid > .photo-item {
+      display: block;
+      width: 100%;
+      min-width: 0;
       margin: 0;
     }
     .photo-item img {
@@ -16,20 +30,20 @@
     }
     .photo-item figcaption {
       display: grid;
-      grid-template-columns: 34px 1fr auto;
+      grid-template-columns: 34px minmax(0, 1fr) auto;
       gap: 12px;
+      margin: 0;
       padding-top: 8px;
       font-size: 10px;
+      line-height: 1.4;
       letter-spacing: .03em;
       color: #555;
     }
     @media (max-width:760px) {
+      .photo-grid { gap: 36px; }
       .photo-item figcaption {
-        grid-template-columns: 28px 1fr;
-      }
-      .photo-item figcaption span:last-child {
-        grid-column: 2;
-        color: #888;
+        grid-template-columns: 28px minmax(0, 1fr) auto;
+        gap: 8px;
       }
     }
   </style>
